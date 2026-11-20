@@ -5,6 +5,40 @@
   - 项目领域：AI 大模型应用
   - 核心方向：RAG（检索、增强和生成）与智能体开发
 
+  ## 二次开发说明
+
+  > **本项目基于黑马程序员课程仓库二次开发。**
+  >
+  > 原始仓库：[shuhongfan/Python_RAG_Heima](https://github.com/shuhongfan/Python_RAG_Heima)
+  >
+  > 课程代码的著作权归原作者所有，本仓库仅用于个人学习与实践，并按本地环境做了如下适配。
+
+  ### 与原始仓库的主要差异
+
+  | 方面 | 原始仓库 | 本仓库（本地适配） |
+  | :--- | :--- | :--- |
+  | 嵌入模型 | `qwen2.5:0.5b-instruct`（896 维） | `bge-m3`（1024 维，Ollama 专用嵌入模型） |
+  | 对话模型 | `qwen2.5:0.5b-instruct` | `qwen3:4b`（本地 Ollama） |
+  | 模型配置 | 部分脚本写死模型名 | `config_data.py` 统一管理，`knowledge_base.py` / `vector_stores.py` 读配置 |
+  | 云端调用示例（08） | `Tongyi` 走 dashscope 原生通道 | `ChatOpenAI` + OpenAI 兼容接口（`compatible-mode/v1`） |
+  | 向量库 | 随仓库提交的旧库 | 已用 `bge-m3` 重新入库（`chroma_db` 1024 维） |
+  | 版本控制 | 无 `.gitignore` | 已忽略 `.venv`、`.env`、`.idea`、`chat_history` 等个人文件 |
+
+  ### 本地运行环境
+
+  - Python 3.12（项目内 `.venv`）
+  - [Ollama](https://ollama.com/)：需先拉取两个模型
+    ```bash
+    ollama pull qwen3:4b      # 对话模型
+    ollama pull bge-m3        # 嵌入模型（1024 维）
+    ```
+  - 云端示例（08）需要环境变量 `DASHSCOPE_API_KEY`，或项目根目录 `.env` 文件
+
+  ### 说明
+
+  - 若需对照课程原版代码，请访问上方原始仓库链接
+  - 本项目不对课程内容的正确性作额外担保，仅记录个人学习过程中的本地化改动
+
   ## RAG 回顾
 
   RAG（检索、增强和生成）核心分为两条处理线，聚焦提升模型回答的准确性与时效性：
