@@ -1,0 +1,16 @@
+# 虚拟环境与依赖缓存（可再生，不入库）
+.venv/
+__pycache__/
+*.pyc
+
+# 本地密钥：绝不提交
+.env
+
+# IDE 个人配置
+.idea/
+
+# 本地对话记录（含个人提问内容）
+chat_history/
+
+# Jupyter 检查点
+.ipynb_checkpoints/
